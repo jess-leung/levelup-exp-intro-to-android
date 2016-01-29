@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ArrayList<String> moviesList = new ArrayList<>();
+        final ArrayList<String> moviesList = new ArrayList<>();
         moviesList.add("Hunger Games");
         moviesList.add("Star Wars");
         moviesList.add("Avengers");
@@ -54,6 +56,13 @@ public class MainActivity extends AppCompatActivity
         ArrayAdapter adapter = new ArrayAdapter(MainActivity.this,
                 android.R.layout.simple_list_item_1, moviesList);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, moviesList.get(position), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
