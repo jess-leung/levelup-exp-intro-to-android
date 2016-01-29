@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -47,6 +49,11 @@ public class MainActivity extends AppCompatActivity
         moviesList.add("Hunger Games");
         moviesList.add("Star Wars");
         moviesList.add("Avengers");
+
+        ListView listView = (ListView) findViewById(R.id.listview);
+        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this,
+                android.R.layout.simple_list_item_1, moviesList);
+        listView.setAdapter(adapter);
     }
 
     @Override
